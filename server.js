@@ -1,38 +1,18 @@
-const express = require("express");
-const dotenv = require("dotenv");
-const emailRoutes = require("./routes/emailRoutes");
+const express = require('express');
+const cors = require('cors'); // Import the cors package
+
 const app = express();
 
-dotenv.config();
+// Use the cors middleware
+app.use(cors());
 
-
-app.use((req, res, next) => {
-  res.header(
-  'Access-Control-Allow-Origin',
-  '*'
-  );
-  res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
-  res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization');
-  res.header('Access-Control-Allow-Credentials', true);
-  
-  console.log('Request received:', req.method, req.url);
-  
-  next();
-  });
-
-
-
-app.use(express.json()); // Tell the server to accept JSON data from the frontend
-
-// Signup and login routes
-
-app.get("/", (req, res) => {
-  res.send("Hello World!");
+// Define a route handler for the root URL
+app.get('/', (req, res) => {
+  res.send('Hello, World!');
 });
 
-app.use("/email", emailRoutes);
-
-const PORT = process.env.PORT; 
-app.listen(PORT, () => {
-  console.log(`Example app listening on port ${PORT}`);
+// Start the Express server
+const port = process.env.PORT || 3000;
+app.listen(port, () => {
+  console.log(`Server running on port ${port}`);
 });
