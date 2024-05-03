@@ -2,15 +2,18 @@ const express = require("express");
 const dotenv = require("dotenv");
 const emailRoutes = require("./routes/emailRoutes");
 const app = express();
-const cors = require('cors');
 
 dotenv.config();
 
-app.use(cors({
-  origin: '*', // Allow requests from this origin
-  methods: ['GET', 'POST'], // Allow these HTTP methods
-  allowedHeaders: ['Content-Type', 'Authorization'], // Allow these headers
-}));
+
+const cors = require('cors');
+const corsOptions ={
+    origin:'http://localhost:3000', 
+    credentials:true,            //access-control-allow-credentials:true
+    optionSuccessStatus:200
+}
+app.use(cors(corsOptions));
+
 
 
 app.use(express.json()); // Tell the server to accept JSON data from the frontend
