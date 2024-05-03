@@ -6,24 +6,23 @@ dotenv.config();
 
 const cors = require("cors");
 const corsOptions = {
-  origin: "*",
-  credentials: true, //access-control-allow-credentials:true
-  optionSuccessStatus: 200,
+  origin: "*", // Allow requests from any origin
+  credentials: true, // Access-Control-Allow-Credentials header
+  optionSuccessStatus: 200, // Set the success status code to 200
 };
 
-app.use(cors()); // Use this after the variable declaration
+app.use(cors(corsOptions)); // Use the configured CORS options
 
-app.use(express.json()); // tell the server to accept the json data from frontend
+app.use(express.json()); // Tell the server to accept JSON data from the frontend
 
-
-//Signup and login
+// Signup and login routes
 app.use("/email", emailRoutes);
 
 app.get("/", (req, res) => {
   res.send("Hello World!");
 });
 
-const PORT = process.env.PORT;
+const PORT = process.env.PORT || 3000; // Set a default port if PORT environment variable is not provided
 app.listen(PORT, () => {
   console.log(`Example app listening on port ${PORT}`);
 });
