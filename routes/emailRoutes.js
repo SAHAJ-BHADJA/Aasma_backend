@@ -18,7 +18,7 @@ const upload = multer({ storage: storage });
 router.post("/sendEmail", upload.single("resume"), async (req, res) => {
   try {
     // Assuming sendEmail function returns a Promise
-    await sendEmail(req.body, req.file); // Pass request body and uploaded file to the sendEmail function
+    await sendEmail(req, res); // Pass request body and uploaded file to the sendEmail function
     res.status(200).json({ message: "Email sent successfully!" });
   } catch (error) {
     console.error("Error sending email:", error);

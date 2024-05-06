@@ -15,7 +15,7 @@ let transporter = nodemailer.createTransport({
 });
 
 const sendEmail = expressAsyncHandler(async (req, res) => {
-  const { firstName, lastName, email, contact, gender, subjects, url, cv, jobTitle} = req.body;
+  const { firstName, lastName, email, contact, url, cv, jobTitle} = req.body;
   // console.log(firstName, lastName, email, contact, gender, subjects, resume, url, cv);
 
   const resumeFile = req.file;
